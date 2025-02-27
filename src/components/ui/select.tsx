@@ -13,7 +13,11 @@ export const SelectTrigger = React.forwardRef<HTMLButtonElement, SelectTriggerPr
   function SelectTrigger({ children, clearable, value, onClear, ...rest }, ref) {
     return (
       <div className="relative inline-block">
-        <button ref={ref} {...rest} className="border p-2 rounded flex items-center justify-between w-full">
+        <button
+          ref={ref}
+          {...rest}
+          className="border p-2 rounded flex items-center justify-between w-full"
+        >
           {value || children}
           <div className="flex items-center">
             {clearable && value && <SelectClearTrigger onClick={onClear} />}
@@ -58,7 +62,15 @@ interface SelectItemProps extends React.ButtonHTMLAttributes<HTMLButtonElement> 
 export const SelectItem = React.forwardRef<HTMLButtonElement, SelectItemProps>(
   function SelectItem({ children, value, onSelect, ...rest }, ref) {
     return (
-      <button ref={ref} {...rest} onClick={() => onSelect(value)} className="block w-full text-left p-2 hover:bg-gray-100">
+      <button
+        ref={ref}
+        {...rest}
+        onClick={(event) => {
+          event.preventDefault(); // Evita comportamento inesperado
+          onSelect(value); // Agora o TypeScript entende que onSelect recebe um string
+        }}
+        className="block w-full text-left p-2 hover:bg-gray-100"
+      >
         {children}
       </button>
     );
@@ -81,10 +93,14 @@ export function Select({ options }: { options: string[] }) {
       />
       <SelectContent isOpen={isOpen}>
         {options.map((option) => (
-          <SelectItem key={option} value={option} onSelect={(val) => {
-            setSelected(val);
-            setIsOpen(false);
-          }}>
+          <SelectItem
+            key={option}
+            value={option}
+            onSelect={(val) => {
+              setSelected(val);
+              setIsOpen(false);
+            }}
+          >
             {option}
           </SelectItem>
         ))}
