@@ -1,7 +1,7 @@
-import { Button, ButtonProps } from "@chakra-ui/react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
-interface LinkButtonProps extends ButtonProps {
+interface LinkButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   to: string;
 }
 
@@ -9,8 +9,8 @@ export function LinkButton({ to, children, ...props }: LinkButtonProps) {
   const navigate = useNavigate();
 
   return (
-    <Button onClick={() => navigate(to)} {...props}>
+    <button onClick={() => navigate(to)} {...props}>
       {children}
-    </Button>
+    </button>
   );
 }
