@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fundo do ícone -->
+  <rect width="32" height="32" rx="8" fill="#0EA5E9"/>
+  
+  <!-- Livro estilizado -->
+  <path d="M8 10C8 9.44772 8.44772 9 9 9H23C23.5523 9 24 9.44772 24 10V22C24 22.5523 23.5523 23 23 23H9C8.44772 23 8 22.5523 8 22V10Z" fill="white"/>
+  
+  <!-- Páginas do livro -->
+  <path d="M10 11H22V21H10V11Z" fill="#0EA5E9"/>
+  
+  <!-- Símbolo de IA -->
+  <path d="M13 14H14V18H13V14ZM18 14H19V18H18V14ZM15 15H17V17H15V15Z" fill="white"/>
+</svg>

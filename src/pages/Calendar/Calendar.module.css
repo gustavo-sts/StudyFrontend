@@ -1,0 +1,78 @@
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cardTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon {
+  color: #007bff;
+}
+
+.actions button {
+  margin: 5px;
+}
+
+.addButton {
+  background: #007bff;
+  color: white;
+}
+
+.calendarGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.weekDay {
+  font-weight: bold;
+  text-align: center;
+}
+
+.day {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.currentMonth {
+  background: white;
+}
+
+.otherMonth {
+  color: gray;
+}
+
+.today {
+  color: red;
+}
+
+.badge {
+  background: red;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 50%;
+  font-size: 12px;
+}
