@@ -1,0 +1,105 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.performanceContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.performanceContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.performanceHeader h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.performanceHeader p {
+  color: var(--text-color-secondary);
+}
+
+.generalStats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.statCard {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.statCard h3 {
+  font-size: 1rem;
+}
+
+.statCard p {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.statCard .trend {
+  font-size: 0.875rem;
+  color: var(--text-color-tertiary);
+}
+
+.statCard .trend.positive {
+  color: green; /* manter a cor original */
+}
+
+.statCard .trend.negative {
+  color: red; /* manter a cor original */
+}
+
+.chartsContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.chartCard {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+
+.chartHeader {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.chartHeader h3 {
+  font-size: 1.25rem;
+}
+
+.chartHeader select {
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+}
+
+.chartContent {
+  height: 300px;
+  padding: 1rem;
+}
+
+.subjectPerformance {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.subjectPerformance h3 {
+  font-size: 1.25rem;
+}
+
+.subjectPerformanceChart {
+  height: 300px;
+}

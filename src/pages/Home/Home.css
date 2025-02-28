@@ -1,19 +1,21 @@
 .home-hero {
-  background-color: #6B46C1;
-  color: white;
+  background: linear-gradient(to right, #6B46C1, #61dafbaa);
+  color: #ffffff;
   padding: 60px 0;
   text-align: center;
 }
 
 .home-hero h1 {
-  font-size: 3rem;
+  font-size: 4rem;
   margin-bottom: 20px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  font-family: 'Arial', sans-serif;
 }
 
 .home-hero p {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   margin-bottom: 30px;
+  font-family: 'Arial', sans-serif;
 }
 
 .home-hero button {
@@ -22,28 +24,41 @@
   border-radius: 5px;
   cursor: pointer;
   border: none;
+  transition: background-color 0.3s ease;
 }
 
 .home-hero button.primary {
-  background-color: white;
+  background-color: #ffffff;
   color: #6B46C1;
+}
+
+.home-hero button.primary:hover {
+  background-color: #5B36B1;
+  color: #ffffff;
 }
 
 .home-hero button.secondary {
   background-color: transparent;
-  color: white;
-  border: 2px solid white;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+.home-hero button.secondary:hover {
+  background-color: #4d9b00;
 }
 
 .home-features {
   padding: 60px 20px;
   text-align: center;
+  background-color: #ffffff;
+  color: #333333;
 }
 
 .home-features h2 {
-  font-size: 2.5rem;
+  font-size: 3rem;
   margin-bottom: 30px;
-  color: #333;
+  color: #333333;
+  font-family: 'Arial', sans-serif;
 }
 
 .home-features-grid {
@@ -56,10 +71,14 @@
   text-align: center;
   padding: 20px;
   transition: transform 0.3s ease;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  cursor: pointer;
 }
 
 .home-feature:hover {
   transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0,0,0,0.2);
 }
 
 .home-feature-icon {
@@ -75,32 +94,44 @@
 }
 
 .home-feature h3 {
-  font-size: 1.8rem;
+  font-size: 2rem;
   margin-bottom: 10px;
-  color: #333;
+  color: #333333;
+  font-family: 'Arial', sans-serif;
 }
 
 .home-pricing {
-  background-color: #f9f9f9;
+  background-color: #f0f0f0;
   padding: 60px 20px;
   text-align: center;
 }
 
 .home-pricing h2 {
-  font-size: 2.5rem;
+  font-size: 3rem;
   margin-bottom: 30px;
-  color: #333;
+  color: #333333;
+  font-family: 'Arial', sans-serif;
 }
 
-.home-pricing p {
-  font-size: 1.4rem;
+.home-pricing-cards {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
 }
 
 .home-pricing-cards {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 40px;
+}
+
+.home-pricing p {
+  font-size: 1.6rem;
+  font-family: 'Arial', sans-serif;
+  color: #333333;
 }
 
 .price-card {
@@ -108,11 +139,16 @@
   width: 100%;
   padding: 20px;
   text-align: center;
-  border: 2px solid #ddd;
-  border-radius: 10px;
+  border: 2px solid #E2E8F0;
+  border-radius: 15px;
   position: relative;
-  background-color: #fff;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  background-color: #ffffff;
+  box-shadow: 0 8px 12px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+
+.price-card:hover {
+  transform: translateY(-10px);
 }
 
 .price-card.recommended {
@@ -125,15 +161,16 @@
   left: 50%;
   transform: translateX(-50%);
   background-color: #6B46C1;
-  color: white;
+  color: #ffffff;
   padding: 5px 10px;
   border-radius: 10px;
 }
 
 .price-card h3 {
   font-size: 2rem;
+  font-family: Arial, Helvetica, sans-serif;
   margin-bottom: 10px;
-  color: #333;
+  color: #333333;
 }
 
 .price-card .price {
@@ -146,6 +183,7 @@
   list-style: none;
   padding: 0;
   margin-bottom: 10px;
+  color: #333333;
 }
 
 .price-card li {
@@ -157,10 +195,15 @@
   padding: 10px;
   width: 100%;
   border-radius: 5px;
-  background-color: #ddd;
-  color: white;
+  background-color: #E2E8F0;
+  color: #333333;
   border: none;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.price-card button:hover {
+  background-color: #D2D8E0;
 }
 
 .price-card.recommended button {
@@ -175,17 +218,4 @@
 @keyframes fadeIn {
   0% { opacity: 0; transform: translateY(-20px); }
   100% { opacity: 1; transform: translateY(0); }
-}
-
-.home-hero button {
-  transition: transform 0.3s ease;
-}
-
-.home-hero button:hover {
-  transform: scale(1.05);
-}
-
-.price-card button:hover {
-  transform: scale(1.05);
-  transition: transform 0.3s ease;
 }

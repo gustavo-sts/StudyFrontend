@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useAuth } from "../../hooks/useAuth";
+import "./Register.css";
 
 interface RegisterFormData {
   name: string;
@@ -90,44 +91,22 @@ export function Register() {
   };
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#f7f7f7",
-      }}
-    >
-      <div
-        style={{
-          backgroundColor: "#fff",
-          padding: "2rem",
-          borderRadius: "8px",
-          boxShadow: "0px 0px 10px rgba(0,0,0,0.1)",
-          width: "100%",
-          maxWidth: "400px",
-        }}
-      >
-        <h2 style={{ textAlign: "center", marginBottom: "1rem" }}>
+    <div className="register-container">
+      <div className="register-card">
+        <h2 className="register-title">
           Crie sua conta
         </h2>
-        <p style={{ textAlign: "center", color: "#666" }}>
+        <p className="register-subtitle">
           Comece sua jornada de estudos hoje mesmo
         </p>
 
         <form
           onSubmit={handleSubmit}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "1rem",
-            marginTop: "1rem",
-          }}
+          className="register-form"
         >
           {/* Nome */}
           <div>
-            <label style={{ fontWeight: "bold", display: "block" }}>
+            <label className="register-label">
               Nome completo
             </label>
             <input
@@ -135,15 +114,10 @@ export function Register() {
               onChange={(e) =>
                 setFormData({ ...formData, name: e.target.value })
               }
-              style={{
-                width: "100%",
-                padding: "0.5rem",
-                border: errors.name ? "2px solid red" : "1px solid #ccc",
-                borderRadius: "4px",
-              }}
+              className={`register-input ${errors.name ? "register-input-error" : ""}`}
             />
             {errors.name && (
-              <p style={{ color: "red", fontSize: "0.875rem" }}>
+              <p className="register-error">
                 {errors.name}
               </p>
             )}
@@ -151,7 +125,7 @@ export function Register() {
 
           {/* E-mail */}
           <div>
-            <label style={{ fontWeight: "bold", display: "block" }}>
+            <label className="register-label">
               E-mail
             </label>
             <input
@@ -160,15 +134,10 @@ export function Register() {
               onChange={(e) =>
                 setFormData({ ...formData, email: e.target.value })
               }
-              style={{
-                width: "100%",
-                padding: "0.5rem",
-                border: errors.email ? "2px solid red" : "1px solid #ccc",
-                borderRadius: "4px",
-              }}
+              className={`register-input ${errors.email ? "register-input-error" : ""}`}
             />
             {errors.email && (
-              <p style={{ color: "red", fontSize: "0.875rem" }}>
+              <p className="register-error">
                 {errors.email}
               </p>
             )}
@@ -176,41 +145,28 @@ export function Register() {
 
           {/* Senha */}
           <div>
-            <label style={{ fontWeight: "bold", display: "block" }}>
+            <label className="register-label">
               Senha
             </label>
-            <div style={{ position: "relative" }}>
+            <div className="register-password-input">
               <input
                 type={showPassword ? "text" : "password"}
                 value={formData.password}
                 onChange={(e) =>
                   setFormData({ ...formData, password: e.target.value })
                 }
-                style={{
-                  width: "100%",
-                  padding: "0.5rem",
-                  border: errors.password ? "2px solid red" : "1px solid #ccc",
-                  borderRadius: "4px",
-                }}
+                className={`register-input ${errors.password ? "register-input-error" : ""}`}
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                style={{
-                  position: "absolute",
-                  right: "10px",
-                  top: "50%",
-                  transform: "translateY(-50%)",
-                  background: "none",
-                  border: "none",
-                  cursor: "pointer",
-                }}
+                className="register-password-toggle"
               >
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </button>
             </div>
             {errors.password && (
-              <p style={{ color: "red", fontSize: "0.875rem" }}>
+              <p className="register-error">
                 {errors.password}
               </p>
             )}
@@ -218,43 +174,30 @@ export function Register() {
 
           {/* Confirmar Senha */}
           <div>
-            <label style={{ fontWeight: "bold", display: "block" }}>
+            <label className="register-label">
               Confirmar senha
             </label>
-            <div style={{ position: "relative" }}>
+            <div className="register-password-input">
               <input
                 type={showConfirmPassword ? "text" : "password"}
                 value={formData.confirmPassword}
                 onChange={(e) =>
                   setFormData({ ...formData, confirmPassword: e.target.value })
                 }
-                style={{
-                  width: "100%",
-                  padding: "0.5rem",
-                  border: errors.confirmPassword
-                    ? "2px solid red"
-                    : "1px solid #ccc",
-                  borderRadius: "4px",
-                }}
+                className={`register-input ${errors.confirmPassword
+                    ? "register-input-error"
+                    : ""}`}
               />
               <button
                 type="button"
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                style={{
-                  position: "absolute",
-                  right: "10px",
-                  top: "50%",
-                  transform: "translateY(-50%)",
-                  background: "none",
-                  border: "none",
-                  cursor: "pointer",
-                }}
+                className="register-password-toggle"
               >
                 {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
               </button>
             </div>
             {errors.confirmPassword && (
-              <p style={{ color: "red", fontSize: "0.875rem" }}>
+              <p className="register-error">
                 {errors.confirmPassword}
               </p>
             )}
@@ -264,27 +207,17 @@ export function Register() {
           <button
             type="submit"
             disabled={isLoading}
-            style={{
-              width: "100%",
-              padding: "0.75rem",
-              backgroundColor: "#007bff",
-              color: "#fff",
-              fontWeight: "bold",
-              border: "none",
-              borderRadius: "4px",
-              cursor: isLoading ? "not-allowed" : "pointer",
-              opacity: isLoading ? 0.7 : 1,
-            }}
+            className="register-button"
           >
             {isLoading ? "Criando conta..." : "Criar Conta"}
           </button>
         </form>
 
-        <p style={{ textAlign: "center", marginTop: "1rem" }}>
+        <p className="register-login-link">
           Já tem uma conta?{" "}
           <Link
             to="/login"
-            style={{ color: "#007bff" }}
+            className="register-link"
           >
             Faça login
           </Link>

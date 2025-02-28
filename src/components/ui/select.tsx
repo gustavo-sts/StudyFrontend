@@ -54,9 +54,13 @@ export const SelectContent = React.forwardRef<HTMLDivElement, SelectContentProps
   }
 );
 
-interface SelectItemProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface SelectItemProps {
   value: string;
   onSelect: (value: string) => void;
+  className?: string;
+  style?: React.CSSProperties;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  children?: React.ReactNode;
 }
 
 export const SelectItem = React.forwardRef<HTMLButtonElement, SelectItemProps>(
@@ -77,27 +81,28 @@ export const SelectItem = React.forwardRef<HTMLButtonElement, SelectItemProps>(
   }
 );
 
+// import { useColorMode } from "./color-mode";
+
 export function Select({ options }: { options: string[] }) {
-  const [selected, setSelected] = useState<string | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
+  // const { colorMode, setColorMode } = useColorMode();
 
   return (
     <div className="relative">
       <SelectTrigger
         ref={triggerRef}
-        value={selected || "Select an option"}
-        clearable={Boolean(selected)}
+        value={"Select an option"}
+        clearable={false}
         onClick={() => setIsOpen(!isOpen)}
-        onClear={() => setSelected(null)}
+        onClear={() => {}}
       />
       <SelectContent isOpen={isOpen}>
         {options.map((option) => (
           <SelectItem
             key={option}
             value={option}
-            onSelect={(val) => {
-              setSelected(val);
+            onSelect={() => {
               setIsOpen(false);
             }}
           >

@@ -1,26 +1,23 @@
-import { useState, useEffect } from "react";
-import { FaBell, FaSun, FaMoon, /* FaUserCircle */ } from "react-icons/fa";
+import { useState } from "react";
+import { FaBell, /* FaUserCircle */ } from "react-icons/fa";
 import { useAuth } from "../../hooks/useAuth";
+import { ColorModeButton } from "../ui/color-mode";
 
 export function Header() {
   const { user, logout } = useAuth();
-  const [darkMode, setDarkMode] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-
-  // Alternar modo escuro/claro
-  useEffect(() => {
-    document.body.classList.toggle("dark-mode", darkMode);
-  }, [darkMode]);
 
   return (
     <header
       style={{
-        background: "white",
-        borderBottom: "1px solid #E2E8F0",
+        background: "var(--background-color)",
+        borderBottomStyle: "solid",
+        borderBottomColor: "var(--border-color)",
+        borderBottomWidth: "1px",
         padding: "16px 32px",
         position: "sticky",
         top: 0,
-        zIndex: 1000,
+        zIndex: 0,
       }}
     >
       <div
@@ -32,18 +29,7 @@ export function Header() {
         }}
       >
         {/* Botão de alternância de tema */}
-        <button
-          onClick={() => setDarkMode(!darkMode)}
-          style={{
-            background: "transparent",
-            border: "none",
-            cursor: "pointer",
-            fontSize: "18px",
-          }}
-          aria-label="Alternar tema"
-        >
-          {darkMode ? <FaSun /> : <FaMoon />}
-        </button>
+        <ColorModeButton />
 
         {/* Notificações */}
         <div style={{ position: "relative", cursor: "pointer" }}>
@@ -109,17 +95,18 @@ export function Header() {
                 position: "absolute",
                 right: 0,
                 top: "40px",
-                background: "white",
+                backgroundColor: "var(--background-color)",
                 borderRadius: "8px",
                 boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
                 minWidth: "150px",
                 padding: "8px 0",
+                zIndex: 1
               }}
             >
-              <p style={menuItemStyle}>Minha Conta</p>
-              <p style={menuItemStyle}>Configurações</p>
+              <p style={{...menuItemStyle, color: "var(--text-color)"}}>Minha Conta</p>
+              <p style={{...menuItemStyle, color: "var(--text-color)"}}>Configurações</p>
               <p
-                style={menuItemStyle}
+                style={{...menuItemStyle, color: "var(--text-color)"}}
                 onClick={logout}
               >
                 Sair
@@ -137,6 +124,5 @@ const menuItemStyle = {
   padding: "10px 16px",
   cursor: "pointer",
   fontSize: "14px",
-  color: "#333",
   transition: "background 0.2s",
 };

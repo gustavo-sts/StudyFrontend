@@ -144,16 +144,16 @@ export function Dashboard() {
 
       {/* Ações Rápidas */}
       <div className="grid grid-4 quick-actions">
-        <button style={{ background: "#e3f2fd" }}>
+        <button style={{ background: "#e3f2fd", color: "#000" }}>
           <FaBook size={20} /> <br /> Estudar Agora
         </button>
-        <button style={{ background: "#f1f8e9" }}>
+        <button style={{ background: "#f1f8e9", color: "#000" }}>
           <FaChartLine size={20} /> <br /> Ver Desempenho
         </button>
-        <button style={{ background: "#fff3e0" }}>
+        <button style={{ background: "#fff3e0", color: "#000" }}>
           <FaCalendarAlt size={20} /> <br /> Planejar Semana
         </button>
-        <button style={{ background: "#e1bee7" }}>
+        <button style={{ background: "#e1bee7", color: "#000" }}>
           <FaBook size={20} /> <br /> Fazer Questões
         </button>
       </div>

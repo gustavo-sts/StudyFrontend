@@ -30,10 +30,10 @@ function NavItem({ icon: Icon, children, to, isPremium }: NavItemProps) {
         padding: "12px",
         borderRadius: "8px",
         textDecoration: "none",
-        color: "#333",
+        color: "var(--text-color)",
         transition: "background 0.2s",
       }}
-      onMouseEnter={(e) => (e.currentTarget.style.background = "#f5f5f5")}
+      onMouseEnter={(e) => (e.currentTarget.style.background = "var(--hover-color)")}
       onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
     >
       <Icon style={{ fontSize: "20px", marginRight: "10px" }} />
@@ -65,77 +65,91 @@ export function Sidebar() {
       style={{
         width: "280px",
         height: "100vh",
-        background: "white",
-        borderRight: "1px solid #E2E8F0",
-        padding: "32px 16px",
+        background: "var(--background-color)",
+        borderRightWidth: "1px",
+        borderRightStyle: "solid",
+        borderRightColor: "var(--border-color)",
+        padding: "32px 0px",
         position: "sticky",
         top: 0,
       }}
     >
       <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-        <NavItem
-          icon={FaHome}
-          to="/app/dashboard"
-        >
-          Dashboard
-        </NavItem>
-        <NavItem
-          icon={FaBook}
-          to="/app/study-plan"
-        >
-          Plano de Estudos
-        </NavItem>
-        <NavItem
-          icon={FaRegLightbulb}
-          to="/app/flashcards"
-          isPremium={!hasPremiumAccess}
-        >
-          Flashcards IA
-        </NavItem>
-        <NavItem
-          icon={FaQuestionCircle}
-          to="/app/questions"
-        >
-          Questões
-        </NavItem>
-        <NavItem
-          icon={FaChartLine}
-          to="/app/performance"
-        >
-          Desempenho
-        </NavItem>
+        <div style={{padding: "0 20px"}}>
+          <NavItem
+            icon={FaHome}
+            to="/app/dashboard"
+          >
+            Dashboard
+          </NavItem>
+          <NavItem
+            icon={FaBook}
+            to="/app/study-plan"
+          >
+            Plano de Estudos
+          </NavItem>
+          <NavItem
+            icon={FaRegLightbulb}
+            to="/app/flashcards"
+            isPremium={!hasPremiumAccess}
+          >
+            Flashcards IA
+          </NavItem>
+          <NavItem
+            icon={FaQuestionCircle}
+            to="/app/questions"
+          >
+            Questões
+          </NavItem>
+          <NavItem
+            icon={FaChartLine}
+            to="/app/performance"
+          >
+            Desempenho
+          </NavItem>
+        </div>
 
-        <hr style={{ margin: "16px 0", borderColor: "#E2E8F0" }} />
+        <hr
+          style={{
+            width: "100%",
+            margin: "16px 0",
+            borderColor: "var(--border-color)",
+          }}
+        />
 
-        <NavItem
-          icon={FaCalendarAlt}
-          to="/app/calendar"
-        >
-          Calendário
-        </NavItem>
-        <NavItem
-          icon={FaTasks}
-          to="/app/planner"
-        >
-          Planner
-        </NavItem>
+        <div style={{padding: "0 20px"}}>
+          <NavItem
+            icon={FaCalendarAlt}
+            to="/app/calendar"
+          >
+            Calendário
+          </NavItem>
+          <NavItem
+            icon={FaTasks}
+            to="/app/planner"
+          >
+            Planner
+          </NavItem>
+        </div>
 
-        <hr style={{ margin: "16px 0", borderColor: "#E2E8F0" }} />
-
-        <NavItem
-          icon={FaRobot}
-          to="/app/ai-chat"
-          isPremium={!hasPremiumAccess}
-        >
-          Chat IA
-        </NavItem>
-        <NavItem
-          icon={FaFileAlt}
-          to="/app/summaries"
-          isPremium={!hasPremiumAccess}
-        >
-          Resumos IA
-        </NavItem>
+        <hr style={{ margin: "16px 0", borderColor: "var(--border-color)" }} />
+        
+        <div style={{padding: "0 20px"}}>
+          <NavItem
+            icon={FaRobot}
+            to="/app/ai-chat"
+            isPremium={!hasPremiumAccess}
+          >
+            Chat IA
+          </NavItem>
+          <NavItem
+            icon={FaFileAlt}
+            to="/app/summaries"
+            isPremium={!hasPremiumAccess}
+          >
+            Resumos IA
+          </NavItem>
+        </div>
       </div>
     </aside>
   );

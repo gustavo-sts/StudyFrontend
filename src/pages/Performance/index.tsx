@@ -14,6 +14,7 @@ import {
   Pie,
   Cell,
 } from "recharts";
+import "./Performance.css";
 
 const performanceData = [
   { date: "01/02", score: 75 },
@@ -47,160 +48,169 @@ export function Performance() {
   const [timeRange, setTimeRange] = useState("7d");
 
   return (
-      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "2rem" }}>
-        <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
-          {/* Cabeçalho */}
-          <div>
-            <h2 style={{ fontSize: "1.5rem", marginBottom: "0.5rem" }}>
-              Desempenho
-            </h2>
-            <p style={{ color: "#666" }}>
-              Acompanhe sua evolução e identifique áreas para melhorar
+    <div className="performanceContainer">
+      <div className="performanceContent">
+        {/* Cabeçalho */}
+        <div className="performanceHeader">
+          <h2>Desempenho</h2>
+          <p>Acompanhe sua evolução e identifique áreas para melhorar</p>
+        </div>
+
+        {/* Estatísticas Gerais */}
+        <div className="generalStats">
+          <div className="statCard">
+            <h3>Taxa de Acerto Geral</h3>
+            <p>75%</p>
+            <p className="trend">
+              <span className="negative">▼</span> 8.5% desde o último mês
             </p>
           </div>
 
-          {/* Estatísticas Gerais */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "1.5rem" }}>
-            <div style={{ border: "1px solid #ccc", borderRadius: "8px", padding: "1rem" }}>
-              <h3>Taxa de Acerto Geral</h3>
-              <p style={{ fontSize: "1.25rem", fontWeight: "bold" }}>75%</p>
-              <p style={{ fontSize: "0.875rem", color: "#999" }}>
-                <span style={{ color: "red" }}>▼</span> 8.5% desde o último mês
-              </p>
-            </div>
-
-            <div style={{ border: "1px solid #ccc", borderRadius: "8px", padding: "1rem" }}>
-              <h3>Questões Resolvidas</h3>
-              <p style={{ fontSize: "1.25rem", fontWeight: "bold" }}>248</p>
-              <p style={{ fontSize: "0.875rem", color: "#999" }}>
-                <span style={{ color: "red" }}>▼</span> 12 hoje
-              </p>
-            </div>
-
-            <div style={{ border: "1px solid #ccc", borderRadius: "8px", padding: "1rem" }}>
-              <h3>Horas Estudadas</h3>
-              <p style={{ fontSize: "1.25rem", fontWeight: "bold" }}>42h</p>
-              <p style={{ fontSize: "0.875rem", color: "#999" }}>
-                <span style={{ color: "green" }}>▲</span> 3.5h hoje
-              </p>
-            </div>
-
-            <div style={{ border: "1px solid #ccc", borderRadius: "8px", padding: "1rem" }}>
-              <h3>Dias Consecutivos</h3>
-              <p style={{ fontSize: "1.25rem", fontWeight: "bold" }}>15</p>
-              <p style={{ fontSize: "0.875rem", color: "#999" }}>Melhor sequência: 21 dias</p>
-            </div>
+          <div className="statCard">
+            <h3>Questões Resolvidas</h3>
+            <p>248</p>
+            <p className="trend">
+              <span className="negative">▼</span> 12 hoje
+            </p>
           </div>
 
-          {/* Gráficos */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
-            {/* Evolução do Desempenho */}
-            <div style={{ border: "1px solid #ccc", borderRadius: "8px" }}>
-              <div style={{ padding: "1rem", borderBottom: "1px solid #ccc" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                  <h3 style={{ fontSize: "1.25rem" }}>Evolução do Desempenho</h3>
-                  <select
-                    value={timeRange}
-                    onChange={(e) => setTimeRange(e.target.value)}
-                    style={{ padding: "0.5rem", borderRadius: "4px", border: "1px solid #ccc" }}
-                  >
-                    <option value="7d">7 dias</option>
-                    <option value="30d">30 dias</option>
-                    <option value="90d">90 dias</option>
-                  </select>
-                </div>
-              </div>
-              <div style={{ height: "300px", padding: "1rem" }}>
-                <ResponsiveContainer width="100%" height="100%">
-                  <LineChart data={performanceData}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="date" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Line type="monotone" dataKey="score" stroke="#0EA5E9" strokeWidth={2} name="Pontuação" />
-                  </LineChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-
-            {/* Distribuição de Tempo */}
-            <div style={{ border: "1px solid #ccc", borderRadius: "8px" }}>
-              <div style={{ padding: "1rem", borderBottom: "1px solid #ccc" }}>
-                <h3 style={{ fontSize: "1.25rem" }}>Distribuição de Tempo</h3>
-              </div>
-              <div style={{ height: "300px", padding: "1rem" }}>
-                <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
-                    <Pie
-                      data={studyTimeDistribution}
-                      cx="50%"
-                      cy="50%"
-                      outerRadius={80}
-                      fill="#8884d8"
-                      dataKey="value"
-                      label={({
-                        cx,
-                        cy,
-                        midAngle,
-                        innerRadius,
-                        outerRadius,
-                        value,
-                        index,
-                      }) => {
-                        const RADIAN = Math.PI / 180;
-                        const radius =
-                          25 + innerRadius + (outerRadius - innerRadius);
-                        const x =
-                          cx + radius * Math.cos(-midAngle * RADIAN);
-                        const y =
-                          cy + radius * Math.sin(-midAngle * RADIAN);
-
-                        return (
-                          <text
-                            x={x}
-                            y={y}
-                            fill="#666"
-                            textAnchor={x > cx ? "start" : "end"}
-                            dominantBaseline="central"
-                          >
-                            {studyTimeDistribution[index].name} ({value}%)
-                          </text>
-                        );
-                      }}
-                    >
-                      {studyTimeDistribution.map((_entry, index) => (
-                        <Cell
-                          key={`cell-${index}`}
-                          fill={COLORS[index % COLORS.length]}
-                        />
-                      ))}
-                    </Pie>
-                    <Tooltip />
-                  </PieChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
+          <div className="statCard">
+            <h3>Horas Estudadas</h3>
+            <p>42h</p>
+            <p className="trend">
+              <span className="positive">▲</span> 3.5h hoje
+            </p>
           </div>
 
-          {/* Desempenho por Matéria */}
-          <div style={{ border: "1px solid #ccc", borderRadius: "8px", padding: "1rem" }}>
-            <h3 style={{ fontSize: "1.25rem" }}>Desempenho por Matéria</h3>
-            <div style={{ height: "300px" }}>
+          <div className="statCard">
+            <h3>Dias Consecutivos</h3>
+            <p>15</p>
+            <p className="trend">Melhor sequência: 21 dias</p>
+          </div>
+        </div>
+
+        {/* Gráficos */}
+        <div className="chartsContainer">
+          {/* Evolução do Desempenho */}
+          <div className="chartCard">
+            <div className="chartHeader">
+              <div className="chartHeader">
+                <h3>Evolução do Desempenho</h3>
+                <select
+                  value={timeRange}
+                  onChange={(e) => setTimeRange(e.target.value)}
+                >
+                  <option value="7d">7 dias</option>
+                  <option value="30d">30 dias</option>
+                  <option value="90d">90 dias</option>
+                </select>
+              </div>
+            </div>
+            <div className="chartContent">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={subjectPerformance}>
+                <LineChart data={performanceData}>
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="subject" />
+                  <XAxis dataKey="date" />
                   <YAxis />
                   <Tooltip />
                   <Legend />
-                  <Bar dataKey="correct" name="Acertos" fill="#0EA5E9" radius={[4, 4, 0, 0]} />
-                  <Bar dataKey="total" name="Total" fill="#E2E8F0" radius={[4, 4, 0, 0]} />
-                </BarChart>
+                  <Line
+                    type="monotone"
+                    dataKey="score"
+                    stroke="#0EA5E9"
+                    strokeWidth={2}
+                    name="Pontuação"
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+          {/* Distribuição de Tempo */}
+          <div className="chartCard">
+            <div className="chartHeader">
+              <h3>Distribuição de Tempo</h3>
+            </div>
+            <div className="chartContent">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={studyTimeDistribution}
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={80}
+                    fill="#8884d8"
+                    dataKey="value"
+                    label={({
+                      cx,
+                      cy,
+                      midAngle,
+                      innerRadius,
+                      outerRadius,
+                      value,
+                      index,
+                    }) => {
+                      const RADIAN = Math.PI / 180;
+                      const radius =
+                        25 + innerRadius + (outerRadius - innerRadius);
+                      const x = cx + radius * Math.cos(-midAngle * RADIAN);
+                      const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+                      return (
+                        <text
+                          x={x}
+                          y={y}
+                          fill="#666"
+                          textAnchor={x > cx ? "start" : "end"}
+                          dominantBaseline="central"
+                        >
+                          {studyTimeDistribution[index].name} ({value}%)
+                        </text>
+                      );
+                    }}
+                  >
+                    {studyTimeDistribution.map((_entry, index) => (
+                      <Cell
+                        key={`cell-${index}`}
+                        fill={COLORS[index % COLORS.length]}
+                      />
+                    ))}
+                  </Pie>
+                  <Tooltip />
+                </PieChart>
               </ResponsiveContainer>
             </div>
           </div>
         </div>
+
+        {/* Desempenho por Matéria */}
+        <div className="subjectPerformance">
+          <h3>Desempenho por Matéria</h3>
+          <div className="subjectPerformanceChart">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={subjectPerformance}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="subject" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar
+                  dataKey="correct"
+                  name="Acertos"
+                  fill="#0EA5E9"
+                  radius={[4, 4, 0, 0]}
+                />
+                <Bar
+                  dataKey="total"
+                  name="Total"
+                  fill="#E2E8F0"
+                  radius={[4, 4, 0, 0]}
+                />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
       </div>
+    </div>
   );
 }

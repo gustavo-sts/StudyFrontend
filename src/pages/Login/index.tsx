@@ -1,6 +1,7 @@
 import { useCallback, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
+import "./Login.css";
 
 interface LoginFormData {
   email: string;
@@ -80,43 +81,19 @@ export function Login() {
   );
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#f7f7f7",
-      }}
-    >
-      <div
-        style={{
-          backgroundColor: "#fff",
-          padding: "2rem",
-          borderRadius: "8px",
-          boxShadow: "0px 0px 10px rgba(0,0,0,0.1)",
-          width: "100%",
-          maxWidth: "400px",
-        }}
-      >
-        <h2 style={{ textAlign: "center", marginBottom: "1rem" }}>
-          Bem-vindo de volta!
-        </h2>
-        <p style={{ textAlign: "center", color: "#666" }}>
+    <div className="login-container">
+      <div className="login-card">
+        <h2 className="login-title">Bem-vindo de volta!</h2>
+        <p className="login-subtitle">
           Entre com sua conta para continuar seus estudos
         </p>
 
         <form
           onSubmit={handleSubmit}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "1rem",
-            marginTop: "1rem",
-          }}
+          className="login-form"
         >
           <div>
-            <label style={{ fontWeight: "bold", display: "block" }}>
+            <label className="login-label">
               E-mail
             </label>
             <input
@@ -125,22 +102,17 @@ export function Login() {
               onChange={(e) =>
                 setFormData({ ...formData, email: e.target.value })
               }
-              style={{
-                width: "100%",
-                padding: "0.5rem",
-                border: errors.email ? "2px solid red" : "1px solid #ccc",
-                borderRadius: "4px",
-              }}
+              className={`login-input ${errors.email ? "login-input-error" : ""}`}
             />
             {errors.email && (
-              <p style={{ color: "red", fontSize: "0.875rem" }}>
+              <p className="login-error">
                 {errors.email}
               </p>
             )}
           </div>
 
           <div>
-            <label style={{ fontWeight: "bold", display: "block" }}>
+            <label className="login-label">
               Senha
             </label>
             <input
@@ -149,15 +121,10 @@ export function Login() {
               onChange={(e) =>
                 setFormData({ ...formData, password: e.target.value })
               }
-              style={{
-                width: "100%",
-                padding: "0.5rem",
-                border: errors.password ? "2px solid red" : "1px solid #ccc",
-                borderRadius: "4px",
-              }}
+              className={`login-input ${errors.password ? "login-input-error" : ""}`}
             />
             {errors.password && (
-              <p style={{ color: "red", fontSize: "0.875rem" }}>
+              <p className="login-error">
                 {errors.password}
               </p>
             )}
@@ -166,35 +133,25 @@ export function Login() {
           <button
             type="submit"
             disabled={isLoading}
-            style={{
-              width: "100%",
-              padding: "0.75rem",
-              backgroundColor: "#007bff",
-              color: "#fff",
-              fontWeight: "bold",
-              border: "none",
-              borderRadius: "4px",
-              cursor: isLoading ? "not-allowed" : "pointer",
-              opacity: isLoading ? 0.7 : 1,
-            }}
+            className="login-button"
           >
             {isLoading ? "Entrando..." : "Entrar"}
           </button>
         </form>
 
-        <div style={{ textAlign: "center", marginTop: "1rem" }}>
+        <div className="login-links">
           <p>
             Não tem uma conta?{" "}
             <Link
               to="/register"
-              style={{ color: "#007bff" }}
+              className="login-link"
             >
               Cadastre-se
             </Link>
           </p>
           <Link
             to="#"
-            style={{ color: "#007bff", display: "block", marginTop: "0.5rem" }}
+            className="login-forgot-password"
           >
             Esqueceu sua senha?
           </Link>
